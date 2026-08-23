@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Ensure the cache directory exists
+mkdir -p "${CARTOPY_DATA_DIR}"
+
+# Pre-fetch Natural Earth features at desired scales
+python - <<'PY'
+import cartopy.feature as cfeature
+
+features = [
+    cfeature.LAND,
+    cfeature.OCEAN,
+    cfeature.COASTLINE,
+    cfeature.BORDERS,
+    cfeature.LAKES,
+]
+
+scales = ['110m']
+
+# Force download by constructing per-scale features and touching geometries()
+for base in features:
+    for scale in scales:
+        try:
+            f = base.with_scale(scale)
+            # Accessing geometries triggers the download into CARTOPY_DATA_DIR
+            list(f.geometries())
+            print(f"Cached {getattr(base, 'name', str(base))} at {scale}")
+        except Exception as e:
+            print(f"Warning: could not cache {getattr(base, 'name', str(base))} at {scale}: {e}")
+PY
