@@ -1,0 +1,18 @@
+./output_ERA5/
+./summed_binary/ ! path for summed binary - NOT needed for current application
+==================================
+1 ! Number of FLEXPART level to start at
+1 ! Number of FLEXPART level to stop at
+1.0 ! Multiplication factor to get s
+fp ! Model name stamp in file name
+f11 ! Version stamp in file name
+1 ! species to start with
+1 ! species to end with
+1 ! selected release - VERY IMPORTANT for current application
+190001010000 ! selected start date-time
+210001010000 ! selected stop date-time
+.false.  ! indication, whether summed binary should be produced
+001 ! file suffix for summed binary - NOT needed for current application
+part-sum   ! summed species name for summed binary - NOT needed for current application
+.false.  ! indication, whether simple file name should be used
+.false.  ! indication, whether decay should be applied a posteriori

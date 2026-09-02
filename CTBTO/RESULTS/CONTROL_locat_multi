@@ -1,0 +1,21 @@
+# SRS File archive
+./outputsrs/
+
+#
+# Species measured
+#
+1                        ! number of species
+Ru-106      0.0          ! half-life [s], according to CTBTO 30.100 Y
+#
+# Scenario/Measurements
+#
+1E-18                    ! background concentration, used only for FOI approach
+3                        ! number of measurements
+conc_RELEASE_SEP63 20171001 09  0.0E-3   ! station | collection stop | concentration above MDC
+conc_RELEASE_SEP63 20171002 09  1.0E-3
+conc_RELEASE_SEP63 20171003 09  0.5E-3
+
+FALSE  ! indication, whether srs-files are in CTBTO format (corner longitudes and latitudes of global field not given)
+FALSE  ! indication, whether time integration should be applied
+10.75 ! days to start time integration before last collection stop
+++++++++++++++++++++++++++++

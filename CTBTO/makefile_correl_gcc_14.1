@@ -1,0 +1,22 @@
+MAIN	= locate_multi.out
+DESTDIR	= .
+SOURCE = ./subroutines/caldate.f ./subroutines/juldate.f ./subroutines/regression.f ./subroutines/corr.f ./subroutines/varx.f ./subroutines/sort.f ./subroutines/mean.f ./subroutines/covx.f locate_multi.f
+
+FC = gfortran
+
+FC_VERSION := $(shell $(FC) -dumpversion | cut -d. -f1)
+
+OBJECT = $(SOURCE:.f=.o)
+
+.PHONY: all print-info
+
+all: print-info $(DESTDIR)/$(MAIN)
+	
+
+$(DESTDIR)/$(MAIN): $(OBJECT)
+	$(FC) $(FFLAGS) -o $(MAIN) $(OBJECT) $(LDFLAGS)
+
+
+# Neues Target zum Ausgeben der Version
+print-info:
+	@echo "Fortran-Compiler-Version is: $(FC_VERSION)"

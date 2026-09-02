@@ -1,0 +1,29 @@
+MAIN    = flexout2srsmnetcdf.out
+DESTDIR	= .
+SOURCE = ./subroutines/caldate.f ./subroutines/juldate.f ./subroutines/write_summed_binary.f flexout2srsmnetcdf.f
+
+FC      = gfortran
+
+FC_VERSION := $(shell $(FC) -dumpversion | cut -d. -f1)
+
+INCDIR = /perm/umwelt/atmops/.conda/envs/fortran_14_1_eccodes_2_38/include
+LIBDIR = /perm/umwelt/atmops/.conda/envs/fortran_14_1_eccodes_2_38/lib
+LIBPATH1 = -I$(INCDIR) -L$(LIBDIR) -lnetcdff 
+FFLAGS  = ${LIBPATH1} -L${METLIB} -lmet -fallow-argument-mismatch 
+
+LDFLAGS =  $(FFLAGS) -Wunused -ffree-form -O2 -frecord-marker=4 -fconvert=big-endian -fcheck=bounds
+
+.%.o : %.mod
+OBJECT = $(SOURCE:.f=.o)
+
+.PHONY: all print-info
+
+all: print-info $(DESTDIR)/$(MAIN)
+
+
+$(DESTDIR)/$(MAIN): $(OBJECT)
+	$(FC) $(FFLAGS) -o $(MAIN) $(OBJECT) $(LDFLAGS)
+
+# Neues Target zum Ausgeben der Version
+print-info:
+	@echo "Fortran-Compiler-Version is: $(FC_VERSION)"
