@@ -7,9 +7,13 @@ dependencies:
   - scipy=1.13.1
   - xarray=2024.06.0
   - matplotlib=3.8.4
+  - cartopy=0.22.0
   - pyproj=3.6.1
+  - shapely=2.0.4
   - netcdf4=1.7.1
+  - cftime=1.6.4
   - ipython=8.24.0
+  - f90nml=1.4.4
   - fortran-compiler
   - make
   - pkg-config
