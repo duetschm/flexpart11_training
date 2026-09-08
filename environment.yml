@@ -14,5 +14,8 @@ dependencies:
   - cftime=1.6.4
   - ipython=8.24.0
   - f90nml=1.4.4
-variables:
-  CARTOPY_DATA_DIR: /home/jovyan/cartopy_data
+  - fortran-compiler
+  - make
+  - pkg-config
+  - netcdf-fortran
+  - eccodes=2.35.0
