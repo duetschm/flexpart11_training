@@ -20,3 +20,4 @@ dependencies:
   - pkg-config
   - netcdf-fortran
   - eccodes=2.35.0
+  - vim
